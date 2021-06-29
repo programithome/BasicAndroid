@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         var retrofit = RetrofitClient.getClient("https://www.boredapi.com/api/").create(API::class.java)
         retrofit.getRandomIdea().enqueue(object : Callback<ResponseMain>{
             override fun onResponse(call: Call<ResponseMain>, response: Response<ResponseMain>) {
+                if (response.body() != null){
+                    response.body()!!.activity
+                }
                 Log.d("MyLOG", "onRespose")
             }
 
